@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Check</title>
+
+    <!-- Bootstrap for layout -->
+    <link href="bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <!-- Roboto font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F4F4F4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .site-logo {
+            margin-bottom: 30px;
+        }
+
+        .site-logo img {
+            width: 180px;
+        }
+
+        h4 {
+            font-weight: 700;
+            color: #000;
+        }
+
+        .textreason {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .btn {
+            background-color: #0066ff !important;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 150px;
+        }
+
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Optional site logo -->
+        <div class="site-logo">
+            <img src="your-logo.png" alt="Site Logo">
+        </div>
+
+        <h4>Security Check</h4>
+        <p class="textreason">This site uses security checks to ensure the people accessing it are real. Please complete the CAPTCHA below to continue.</p>
+
+        <!-- CAPTCHA form -->
+        <form action="#" method="post" class="form" id="captcha-form">
+            <p>Before you proceed, please complete the CAPTCHA below.</p>
+
+            <!-- hCaptcha widget -->
+            <div class="h-captcha" data-sitekey="0142e35e-9373-4aa2-8d34-7e7a2777380b" data-callback="enableSubmitButton"></div>
+            <br>
+
+            <!-- Submit button -->
+            <input type="submit" value="Continue" id="sbmt" class="btn" disabled>
+        </form>
+    </div>
+
+    <!-- hCaptcha script -->
+    <script src="api.js" async defer></script>
+
+    <script>
+        // Enable submit button after CAPTCHA is solved
+        function enableSubmitButton() {
+            document.getElementById("sbmt").removeAttribute("disabled");
+        }
+
+        // Redirect to request.html on form submission
+        document.getElementById('captcha-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Stop normal form submission
+            window.location.href = "request.html"; // Redirect after CAPTCHA
+        });
+    </script>
+</body>
+</html>
